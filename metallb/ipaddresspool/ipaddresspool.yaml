@@ -1,0 +1,10 @@
+---
+manifest:
+  apiVersion: metallb.io/v1beta1
+  kind: IPAddressPool
+  metadata:
+    name: default-pool
+    namespace: metallb-system
+  spec:
+    addresses:
+      - 172.168.101.101-172.168.101.102

@@ -1,0 +1,10 @@
+tetragon:
+  enableProcessCred: true
+  enableProcessNs: true
+  prometheus:
+    serviceMonitor:
+      enabled: true
+tetragonOperator:
+  prometheus:
+    serviceMonitor:
+      enabled: true

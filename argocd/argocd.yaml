@@ -1,0 +1,70 @@
+---
+global:
+  domain: argocd.kubernetes.local
+
+dex:
+  enabled: false
+
+repoServer:
+  initContainers:
+    - name: init
+      image: grafana/alpine:3.15.4
+      command: ["/bin/sh", "-c"]
+      args: ["update-ca-certificates && cp -r /etc/ssl/certs/* /artifact/"]
+      volumeMounts:
+        - name: certs
+          mountPath: /usr/local/share/ca-certificates/kubernetes-local.crt
+          subPath: kubernetes-local.pem
+          readOnly: false
+        - name: temp
+          mountPath: /artifact
+          readOnly: false
+  volumeMounts:
+    - name: temp
+      mountPath: /etc/ssl/certs
+      readOnly: false
+  volumes:
+    - name: certs
+      configMap:
+        name: kubernetes-local
+    - name: temp
+      emptyDir: {}
+
+configs:
+  ssh:
+    knownHosts: ""
+  cm:
+    accounts.admin: apiKey
+
+server:
+  extraArgs:
+    - "--insecure"
+  initContainers:
+    - name: init
+      image: grafana/alpine:3.15.4
+      command: ["/bin/sh", "-c"]
+      args: ["update-ca-certificates && cp -r /etc/ssl/certs/* /artifact/"]
+      volumeMounts:
+        - name: certs
+          mountPath: /usr/local/share/ca-certificates/kubernetes-local.crt
+          subPath: kubernetes-local.pem
+          readOnly: false
+        - name: temp
+          mountPath: /artifact
+          readOnly: false
+  volumeMounts:
+    - name: temp
+      mountPath: /etc/ssl/certs
+      readOnly: false
+  volumes:
+    - name: certs
+      configMap:
+        name: kubernetes-local
+    - name: temp
+      emptyDir: {}
+  ingress:
+    enabled: true
+    ingressClassName: nginx
+    path: /
+    pathType: Prefix
+    tls: true

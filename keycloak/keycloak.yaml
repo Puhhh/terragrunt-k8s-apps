@@ -1,0 +1,58 @@
+auth:
+  adminUser: admin
+  adminPassword: ${admin_password}
+proxy: edge
+
+initContainers:
+  - name: init
+    image: grafana/alpine:3.15.4
+    command: ["/bin/sh", "-c"]
+    args: ["update-ca-certificates && cp -r /etc/ssl/certs/* /artifact/"]
+    volumeMounts:
+      - name: certs
+        mountPath: /usr/local/share/ca-certificates/kubernetes-local.crt
+        subPath: kubernetes-local.pem
+        readOnly: false
+      - name: temp
+        mountPath: /artifact
+        readOnly: false
+
+extraVolumeMounts:
+  - name: temp
+    mountPath: /etc/ssl/certs
+    readOnly: false
+
+extraVolumes:
+  - name: certs
+    configMap:
+      name: kubernetes-local
+  - name: temp
+    emptyDir: {}
+
+customCaExistingSecret: ${custom_secret_name}
+
+postgresql:
+  enabled: false
+
+externalDatabase:
+  existingSecret: "keycloak-pg-secret"
+  existingSecretHostKey: "db-host"
+  existingSecretPortKey: "db-port"
+  existingSecretDatabaseKey: "db-name"
+  existingSecretUserKey: "username"
+  existingSecretPasswordKey: "password"
+
+production: true
+
+ingress:
+  enabled: true
+  ingressClassName: "nginx"
+  pathType: Prefix
+  hostname: keycloak.kubernetes.local
+  tls: true
+  secrets:
+    - name: keycloak.kubernetes.local-tls
+      certificate: |
+        ${pem_crt}
+      key: |
+        ${pem_key}

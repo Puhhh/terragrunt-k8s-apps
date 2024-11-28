@@ -1,0 +1,52 @@
+---
+ipam:
+  mode: "kubernetes"
+
+kubeProxyReplacement: "true"
+
+securityContext:
+  capabilities:
+    ciliumAgent:
+      - CHOWN
+      - KILL
+      - NET_ADMIN
+      - NET_RAW
+      - IPC_LOCK
+      - SYS_ADMIN
+      - SYS_RESOURCE
+      - DAC_OVERRIDE
+      - FOWNER
+      - SETGID
+      - SETUID
+    cleanCiliumState:
+      - NET_ADMIN
+      - SYS_ADMIN
+      - SYS_RESOURCE
+
+cgroup:
+  autoMount:
+    enabled: false
+  hostRoot: /sys/fs/cgroup
+
+k8sServiceHost: "localhost"
+k8sServicePort: 7445
+
+hubble:
+  relay:
+    enabled: true
+  ui:
+    enabled: true
+    ingress:
+      enabled: true
+      annotations:
+        nginx.ingress.kubernetes.io/auth-signin: https://oauth2-proxy.kubernetes.local/oauth2/start?rd=https://$host$request_uri
+        nginx.ingress.kubernetes.io/auth-url: http://oauth2-proxy.oauth2-proxy.svc.cluster.local/oauth2/auth
+        nginx.ingress.kubernetes.io/proxy-buffer-size: "16k"
+        nginx.ingress.kubernetes.io/auth-response-headers: Authorization
+      className: nginx
+      hosts:
+        - hubble-ui.kubernetes.local
+      tls:
+        - hosts:
+            - hubble-ui.kubernetes.local
+          secretName: hubble-ui-tls

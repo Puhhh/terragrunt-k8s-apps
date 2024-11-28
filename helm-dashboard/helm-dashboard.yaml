@@ -1,0 +1,17 @@
+ingress:
+  enabled: true
+  className: "nginx"
+  annotations:
+    nginx.ingress.kubernetes.io/auth-signin: https://oauth2-proxy.kubernetes.local/oauth2/start?rd=https://$host$request_uri
+    nginx.ingress.kubernetes.io/auth-url: http://oauth2-proxy.oauth2-proxy.svc.cluster.local/oauth2/auth
+    nginx.ingress.kubernetes.io/proxy-buffer-size: "16k"
+    nginx.ingress.kubernetes.io/auth-response-headers: Authorization
+  hosts:
+    - host: helm-dashboard.kubernetes.local
+      paths:
+        - path: /
+          pathType: Prefix
+  tls:
+    - hosts:
+        - helm-dashboard.kubernetes.local
+      secretName: helm-dashboard-tls

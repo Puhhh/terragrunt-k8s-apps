@@ -1,0 +1,50 @@
+config:
+  clientID: "oauth2-proxy"
+  clientSecret: ${client_secret}
+
+  cookieSecret: ${cookie_secret}
+
+  configFile: |-
+    provider="keycloak-oidc"
+    redirect_url="https://oauth2-proxy.kubernetes.local/oauth2/callback"
+    oidc_issuer_url="https://keycloak.kubernetes.local/realms/kubernetes"
+    email_domains="kubernetes.local"
+    allowed_groups="kube-adm"
+    code_challenge_method="S256"
+    http_address="0.0.0.0:4180"
+    upstreams="file:///dev/null"
+    cookie_domains=["kubernetes.local"]
+    whitelist_domains=[".kubernetes.local"]
+    pass_authorization_header = true
+    pass_access_token = true
+    pass_user_headers = true
+    set_authorization_header = true
+    set_xauthrequest = true
+    cookie_refresh = "1m"
+    cookie_expire = "30m"
+
+extraVolumes:
+  - name: certs
+    configMap:
+      name: kubernetes-local
+
+extraVolumeMounts:
+  - name: certs
+    mountPath: /etc/ssl/certs
+
+metrics:
+  enabled: false
+
+ingress:
+  enabled: true
+  className: "nginx"
+  pathType: Prefix
+  path: /
+  annotations:
+    nginx.ingress.kubernetes.io/proxy-buffer-size: "16k"
+  hosts:
+    - oauth2-proxy.kubernetes.local
+  tls:
+    - hosts:
+        - oauth2-proxy.kubernetes.local
+      secretName: oauth2-proxy-tls
