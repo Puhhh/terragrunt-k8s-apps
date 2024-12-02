@@ -7,14 +7,14 @@ terraform {
 }
 
 inputs = {
-  namespace_name         = "ngnix"
+  namespace_name         = "nginx"
   use_helm_custom_values = true
   helm_config = [
     {
       chart_name    = "ingress-nginx"
       chart_repo    = "https://kubernetes.github.io/ingress-nginx"
       chart_version = "4.12.0-beta.0"
-      values_path   = "ngnix.yaml"
+      values_path   = "nginx.yaml"
     }
   ]
 }
