@@ -1,0 +1,21 @@
+dependencies {
+  paths = ["../metallb"]
+}
+
+terraform {
+  source = "git::https://github.com/Puhhh/terraform-k8s-apps.git?ref=v1.0.0"
+}
+
+inputs = {
+  namespace_name         = "metallb-system"
+  use_helm_custom_values = true
+  helm_config = [
+    {
+      release_name  = "l2advertisement"
+      chart_name    = "custom-manifest"
+      chart_repo    = "https://puhhh.github.io/helm-repo/"
+      chart_version = "0.0.1"
+      values_path   = "l2advertisement.yaml"
+    }
+  ]
+}
