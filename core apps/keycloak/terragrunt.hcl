@@ -1,5 +1,5 @@
 dependencies {
-  paths = ["../cloudnativepg", "../ngnix", "../trust-manager/bundle"]
+  paths = ["../cloudnativepg", "../nginx", "../trust-manager/bundle"]
 }
 
 terraform {

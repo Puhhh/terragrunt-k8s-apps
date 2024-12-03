@@ -45,14 +45,14 @@ grafana:
       allow_sign_up: true
       client_id: grafana
       client_secret: ${client_secret}
-      scopes: openid email profile offline_access roles groups
+      scopes: openid email profile offline_access roles
       email_attribute_path: email
       login_attribute_path: username
       name_attribute_path: full_name
       auth_url: https://keycloak.kubernetes.local/realms/kubernetes/protocol/openid-connect/auth
       token_url: https://keycloak.kubernetes.local/realms/kubernetes/protocol/openid-connect/token
       api_url: https://keycloak.kubernetes.local/realms/kubernetes/protocol/openid-connect/userinfo
-      role_attribute_path: contains(roles[*], 'grafanaadmin') && 'GrafanaAdmin' || contains(roles[*], 'admin') && 'Admin' || contains(roles[*], 'editor') && 'Editor' || 'Viewer'
+      role_attribute_path: contains(resource_access.grafana.roles[*], 'admin') && 'Admin' || contains(resource_access.grafana.roles[*], 'editor') && 'Editor' || 'Viewer'
       allow_assign_grafana_admin: true
     server:
       root_url: https://grafana.kubernetes.local/
