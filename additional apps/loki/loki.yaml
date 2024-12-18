@@ -92,5 +92,5 @@ ingress:
     - loki.kubernetes.local
   tls:
     - hosts:
-        - loki.example.com
+        - loki.kubernetes.local
       secretName: loki-tls
