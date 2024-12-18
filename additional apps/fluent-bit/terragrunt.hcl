@@ -21,10 +21,4 @@ inputs = {
       values_path   = "fluent-bit.yaml"
     }
   ]
-  use_namespace_labels = true
-  namespace_labels = {
-    "pod-security.kubernetes.io/enforce" = "privileged"
-    "pod-security.kubernetes.io/audit"   = "privileged"
-    "pod-security.kubernetes.io/warn"    = "privileged"
-  }
 }
