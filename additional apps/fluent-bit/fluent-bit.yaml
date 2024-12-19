@@ -44,15 +44,16 @@ config:
         Name tail
         Alias kubernetes
         Path /var/log/containers/*.log
+        Exclude_Path *coredns*.log,*kube-apiserver*.log,*kube-controller-manager*.log,*kube-scheduler*.log,*kyverno*.log,*policy-reporter*.log,*fluent-bit*.log,*loki*.log,*prometheus*.log
         Parser containerd
         Tag kubernetes.*
 
-    [INPUT]
-        Name tail
-        Alias audit
-        Path /var/log/audit/kube/*.log
-        Parser audit
-        Tag audit.*
+  #    [INPUT]
+  #        Name tail
+  #        Alias audit
+  #        Path /var/log/audit/kube/*.log
+  #        Parser audit
+  #        Tag audit.*
 
   filters: |
     [FILTER]
@@ -67,7 +68,7 @@ config:
         K8S-Logging.Parser Off
         K8S-Logging.Exclude On
         Annotations Off
-        Labels On
+        Labels Off
 
     [FILTER]
         Name modify
@@ -96,7 +97,7 @@ config:
         Host loki.loki.svc.cluster.local
         Port 3100
         Tenant_ID Kubernetes
-        Labels job=fluent-bit
+        Labels job=fluent-bit, namespace=$kubernetes['namespace_name'], pod=$kubernetes['pod_name'], container=$kubernetes['container_name']
         Auto_Kubernetes_Labels on
 
 daemonSetVolumes:
