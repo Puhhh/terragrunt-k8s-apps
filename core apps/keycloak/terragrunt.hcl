@@ -16,7 +16,7 @@ inputs = {
     {
       chart_name    = "keycloak"
       chart_repo    = "oci://registry-1.docker.io/bitnamicharts/"
-      chart_version = "24.2.2"
+      chart_version = "24.8.0"
       values_path   = "keycloak.yaml"
     },
     {

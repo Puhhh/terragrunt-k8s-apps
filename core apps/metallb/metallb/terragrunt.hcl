@@ -17,7 +17,7 @@ inputs = {
     {
       chart_name    = "metallb"
       chart_repo    = "https://metallb.github.io/metallb"
-      chart_version = "0.14.8"
+      chart_version = "0.15.2"
       values_path   = "metallb.yaml"
     }
   ]

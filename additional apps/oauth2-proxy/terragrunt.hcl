@@ -12,7 +12,7 @@ inputs = {
     {
       chart_name    = "oauth2-proxy"
       chart_repo    = "https://oauth2-proxy.github.io/manifests"
-      chart_version = "7.8.0"
+      chart_version = "7.14.2"
       values_path   = "oauth2-proxy.yaml"
     }
   ]

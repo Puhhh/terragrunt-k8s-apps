@@ -17,7 +17,7 @@ inputs = {
     {
       chart_name    = "cert-manager"
       chart_repo    = "https://charts.jetstack.io/"
-      chart_version = "1.16.2"
+      chart_version = "1.18.2"
       values_path   = "cert-manager.yaml"
     }
   ]

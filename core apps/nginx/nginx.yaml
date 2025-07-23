@@ -1,2 +1,6 @@
 controller:
   allowSnippetAnnotations: true
+  config:
+    proxy-buffer-size: "8k"
+    proxy-buffers: "4 16k"
+    proxy-busy-buffers-size: "24k"

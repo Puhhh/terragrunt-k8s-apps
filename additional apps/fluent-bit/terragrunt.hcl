@@ -17,7 +17,7 @@ inputs = {
     {
       chart_name    = "fluent-bit"
       chart_repo    = "https://fluent.github.io/helm-charts"
-      chart_version = "0.48.3"
+      chart_version = "0.50.0"
       values_path   = "fluent-bit.yaml"
     }
   ]

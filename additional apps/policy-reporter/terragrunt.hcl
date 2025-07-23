@@ -17,7 +17,7 @@ inputs = {
     {
       chart_name    = "policy-reporter"
       chart_repo    = "https://kyverno.github.io/policy-reporter"
-      chart_version = "3.0.0-rc.10"
+      chart_version = "3.3.1"
       values_path   = "policy-reporter.yaml"
     }
   ]

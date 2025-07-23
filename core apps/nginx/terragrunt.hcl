@@ -17,7 +17,7 @@ inputs = {
     {
       chart_name    = "ingress-nginx"
       chart_repo    = "https://kubernetes.github.io/ingress-nginx"
-      chart_version = "4.12.0-beta.0"
+      chart_version = "4.13.0"
       values_path   = "nginx.yaml"
     }
   ]
