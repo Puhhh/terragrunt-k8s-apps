@@ -13,7 +13,7 @@ inputs = {
     {
       chart_name    = "cilium"
       chart_repo    = "https://helm.cilium.io/"
-      chart_version = "1.18.0-rc.1"
+      chart_version = "1.18.1"
       values_path   = "cilium.yaml"
     }
   ]

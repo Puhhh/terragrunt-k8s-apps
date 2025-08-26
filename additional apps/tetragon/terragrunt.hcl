@@ -17,7 +17,7 @@ inputs = {
     {
       chart_name    = "tetragon"
       chart_repo    = "https://helm.cilium.io/"
-      chart_version = "1.4.1"
+      chart_version = "1.5.0"
       values_path   = "tetragon.yaml"
     }
   ]

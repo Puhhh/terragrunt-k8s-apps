@@ -17,7 +17,7 @@ inputs = {
     {
       chart_name    = "kyverno"
       chart_repo    = "https://kyverno.github.io/kyverno/"
-      chart_version = "3.4.4"
+      chart_version = "3.5.1"
       values_path   = "kyverno.yaml"
     }
   ]

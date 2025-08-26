@@ -16,7 +16,7 @@ inputs = {
     {
       chart_name    = "kube-prometheus-stack"
       chart_repo    = "https://prometheus-community.github.io/helm-charts"
-      chart_version = "75.12.0"
+      chart_version = "77.0.1"
       values_path   = "prometheus.yaml"
     }
   ]

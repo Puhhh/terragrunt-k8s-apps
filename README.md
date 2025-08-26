@@ -1,5 +1,13 @@
 # Configure Kubernetes Cluster With Terragrunt
 
+## Step 0
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+python3 check-for-charts-update.py
+```
+
 ## Step 1
 ```bash
 cd core\ apps && terragrunt run-all apply
@@ -12,7 +20,7 @@ Group 2
 - Module /core apps/cert-manager
 - Module /core apps/cloudnativepg
 - Module /core apps/kyverno/kyverno
-- Module /core apps/local-path-provisioner
+- Module /core apps/longhorn
 - Module /core apps/metallb/metallb
 
 Group 3

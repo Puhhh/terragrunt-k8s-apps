@@ -13,7 +13,7 @@ inputs = {
     {
       chart_name    = "loki"
       chart_repo    = "https://grafana.github.io/helm-charts"
-      chart_version = "6.32.0"
+      chart_version = "6.37.0"
       values_path   = "loki.yaml"
     }
   ]

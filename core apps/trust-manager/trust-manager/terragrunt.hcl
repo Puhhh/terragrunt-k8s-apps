@@ -16,7 +16,7 @@ inputs = {
     {
       chart_name    = "trust-manager"
       chart_repo    = "https://charts.jetstack.io/"
-      chart_version = "0.18.0"
+      chart_version = "0.19.0"
       values_path   = "trust-manager.yaml"
     },
   ]

@@ -16,7 +16,7 @@ inputs = {
     {
       chart_name    = "cloudnative-pg"
       chart_repo    = "https://cloudnative-pg.io/charts/"
-      chart_version = "0.24.0"
+      chart_version = "0.26.0"
     }
   ]
 }
