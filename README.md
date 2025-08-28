@@ -20,7 +20,7 @@ Group 2
 - Module /core apps/cert-manager
 - Module /core apps/cloudnativepg
 - Module /core apps/kyverno/kyverno
-- Module /core apps/longhorn
+- Module /core apps/local-path-provisioner
 - Module /core apps/metallb/metallb
 
 Group 3

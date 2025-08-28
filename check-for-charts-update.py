@@ -16,7 +16,6 @@ packages = [
     'ingress-nginx/ingress-nginx',
     'kyverno/kyverno',
     'kyverno/kyverno-policies',
-    'longhorn/longhorn',
     'metallb/metallb',
     'oauth2-proxy/oauth2-proxy',
     'policy-reporter/policy-reporter',
